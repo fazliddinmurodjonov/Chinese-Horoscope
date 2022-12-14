@@ -1,0 +1,211 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.programmsoft.fragments.ResultCompatibilityFragment">
+
+    <TextView
+        android:id="@+id/compatibilityTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/compatibilityResult"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@id/compatibilityLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/compatibilityLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toTopOf="@id/overallTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/compatibilityTv"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/circleImgFirst"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/circle_img"
+            app:layout_constraintBottom_toTopOf="@id/constellationNameMale"
+            app:layout_constraintEnd_toStartOf="@id/loveAnim"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/constellationFirstImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/rabbit"
+            app:layout_constraintBottom_toBottomOf="@id/circleImgFirst"
+            app:layout_constraintEnd_toEndOf="@id/circleImgFirst"
+            app:layout_constraintStart_toStartOf="@id/circleImgFirst"
+            app:layout_constraintTop_toTopOf="@id/circleImgFirst" />
+
+        <TextView
+            android:id="@+id/constellationNameMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/inter_light"
+            android:text="@string/item_horoscope_name"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/circleImgFirst"
+            app:layout_constraintStart_toStartOf="@id/circleImgFirst"
+            app:layout_constraintTop_toBottomOf="@id/circleImgFirst" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loveAnim"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:adjustViewBounds="true"
+            android:scaleX="1.2"
+            android:scaleY="1.2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/circleImgSecond"
+            app:layout_constraintStart_toEndOf="@id/circleImgFirst"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/love"
+            tools:ignore="MissingClass" />
+
+        <TextView
+            android:id="@+id/percentageTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:text="0%"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/loveAnim"
+            app:layout_constraintStart_toStartOf="@id/loveAnim"
+            app:layout_constraintTop_toBottomOf="@id/loveAnim"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <ImageView
+            android:id="@+id/circleImgSecond"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/circle_img"
+            app:layout_constraintBottom_toTopOf="@id/constellationNameFemale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/loveAnim"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/constellationSecondImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/monkey"
+            app:layout_constraintBottom_toBottomOf="@id/circleImgSecond"
+            app:layout_constraintEnd_toEndOf="@id/circleImgSecond"
+            app:layout_constraintStart_toStartOf="@id/circleImgSecond"
+            app:layout_constraintTop_toTopOf="@id/circleImgSecond" />
+
+        <TextView
+            android:id="@+id/constellationNameFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/inter_light"
+            android:text="@string/monkey"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/circleImgSecond"
+            app:layout_constraintStart_toStartOf="@id/circleImgSecond"
+            app:layout_constraintTop_toBottomOf="@id/circleImgSecond" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/overallTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/result"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/nestedScroll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/compatibilityLayout"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/otherPairsBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/overallTv">
+
+        <TextView
+            android:id="@+id/overallCompatibilityTv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/inter_light"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/about_rabbit"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/otherPairsBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/overallTv"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/otherPairsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/background_btn"
+        android:backgroundTint="@null"
+        android:fontFamily="@font/inter_medium"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:stateListAnimator="@null"
+        android:text="@string/otherCouple"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nestedScroll"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

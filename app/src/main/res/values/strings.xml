@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">ChineseHoroscope</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chinese_horoscope">Muchallar\nbashorati</string>
+    <string name="item_horoscope_name">Quyon</string>
+    <string name="about_zodiacs">Muchallar haqida ma’lumot</string>
+    <string name="about_rabbit">Quyon muchali Sharq taqvimida xotirjamlik ramzidir. Mazkur muchal yilida tug‘ilganlar o‘zlariga xos xislatlarga ega bo‘lib, qobiliyatli, izzattalab, sodda, kamtarin, sipo, bosiq kamsuqum, ochiqko‘ngil, sahovatli va barchaga yoqimli bo‘ladilar. Ular nozik did egalaridir. Ko‘pchilik orasida bo‘lishni yoqtiradilar va ularni hamma yoqtirib, qabul qiladi. Ular ko‘pchilikning olqishidagi, ishonchidagi odamlardir.Quyon muchalida tug‘ilganlar o‘ta sezgir bo‘lib, boshqalarning mushkulini xech qanday manfaat talab qilmasdan yengillashtirishga urinadilar. Jiddiy kamchiliklari: g‘iybat qilishni yoqtirib, kim bo‘lsa ham soatlab gaplashib turaveradilar. Lekin g‘iybatni ochiq-oydin emas, kishi bilmas, ehtiyotkorlik va xushmuomalalik bilan amalga oshirishadi. Odatda, og‘ir-vazminliklari bois, ular tinchini buzish qiyin. Ammo arzimas bahonalar bilan yig‘lashlari, arazlashlari, gina-qudurat qilishlari ham mumkin. Shunday bo‘lsada, tez yupanadilar va ovunadilar. Hayot tarziga putur yetkazadigan, uni qiyinlashtiradigan har qanday yangilikka toqatlari yo‘q. Badastir va xavf-xatarsiz yashashga intiladilar. Ular ajoyib ishchanlik qobiliyatiga ega serg‘ayrat kishilar bo‘lib, Halol va o‘z so‘zlarining ustidan chiqadilar. Mazkur muchal yilida tug‘ilganlarning xuquqshunoslik iqtisod, ta’lim-tarbiya, siyosat kabi soxalardagi faoliyati ko‘plab muvaffaqiyatlarga olib keladi. Ayollar esa ishvali, kelishgan bo‘ladilar.</string>
+    <string name="monkey">Maymun</string>
+
+    <!--- About Program Dialog-->
+    <string name="aboutApp">Kundalik  munajjimlar va sevgi bashoratlarini berib boruvchi ilova.</string>
+    <string name="aboutUs">Biz haqimizda</string>
+    <string name="company">Kompaniya: Programm Soft Ltd</string>
+    <string name="web_site">Sayt: programmsoft.uz</string>
+    <string name="version">Versiya: 1.0.0</string>
+    <string name="mail">Mail: programmsoftuz@gmail.com</string>
+    <string name="phone">Telefon: +99871 233 16 36</string>
+    <string name="playMarketLink">https://play.google.com/store/apps/dev?id=5705777915421890833</string>
+    <string name="downloadApp">Dasturni yuklab olish</string>
+    <string name="lang">Til</string>
+    <string name="lang_type">O‘zbekcha</string>
+    <string name="infoApp">Ilova haqida</string>
+    <string name="notification">Bildirishnoma</string>
+    <string name="rateApp">Ilovani baholash</string>
+    <string name="otherApps">Boshqa ilovalar</string>
+    <string name="shareApp">Ulashish</string>
+    <string name="settings">Sozlamalar</string>
+    <string name="langSelect">Tilni tanlang</string>
+    <string name="langUzb">O‘zbekcha</string>
+    <string name="langRu">Русский</string>
+    <string name="langKrill">Ўзбек тили</string>
+    <string name="otherCouple">Juftlikni tanlash</string>
+    <string name="result">Natija</string>
+    <string name="compatibilityBtn">Moslikni tekshirish</string>
+    <string name="compatibilityResult">Moslik</string>
+    <string name="work">Ish</string>
+    <string name="health">Sog‘lik</string>
+    <string name="love">Sevgi</string>
+    <string name="today">Bugun</string>
+    <string name="tomorrow">Ertaga</string>
+    <string name="updateHoroscopeNotification">Munajjimlar bashorati yangilandi.</string>
+    <string name="try_again">Qaytadan urinish</string>
+    <string name="connection">Iltimos, internetga  ulanishni tekshirib  ko‘ring va qaytadan urining.</string>
+    <string name="select_male">Sizning\nbelgingiz</string>
+    <string name="select_female">Juftingiz\nbelgisi</string>
+
 </resources>

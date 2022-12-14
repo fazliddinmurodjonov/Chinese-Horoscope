@@ -1,0 +1,346 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.programmsoft.fragments.SettingsFragment">
+
+    <TextView
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/inter_bold"
+        android:gravity="center_vertical"
+        android:text="@string/settings"
+        android:textColor="@color/textColor"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@id/cardLang"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/cardLang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:backgroundColor="@color/cardColor"
+        app:cornerRadius="12dp"
+        app:foregroundColor="#0DFFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/cardNotification"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="5dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/lang" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/langTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/lang"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/langSelectedTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/lang_type"
+                    android:textColor="#92959B"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.loopeer.shadow.ShadowView>
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/cardNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:backgroundColor="@color/cardColor"
+        app:cardPreventCornerOverlap="true"
+        app:cornerRadius="12dp"
+        app:foregroundColor="#0DFFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/cardInfo"
+        app:layout_constraintTop_toBottomOf="@id/cardLang"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="5dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/notification" />
+
+            <TextView
+                android:layout_weight="3"
+                android:id="@+id/notificationTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="start"
+                android:text="@string/notification"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+            <Switch
+                android:id="@+id/notificationMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="15dp"
+                android:gravity="center_vertical"
+                android:thumb="@drawable/thumb"
+                android:track="@drawable/track"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </LinearLayout>
+    </com.loopeer.shadow.ShadowView>
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/cardInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:backgroundColor="@color/cardColor"
+        app:cardPreventCornerOverlap="true"
+        app:cornerRadius="12dp"
+        app:foregroundColor="#0DFFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/cardRate"
+        app:layout_constraintTop_toBottomOf="@id/cardNotification"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="5dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/info" />
+
+            <TextView
+                android:id="@+id/appInfoTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:text="@string/infoApp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+    </com.loopeer.shadow.ShadowView>
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/cardRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:backgroundColor="@color/cardColor"
+        app:cardElevation="0.5dp"
+        app:cardMaxElevation="0dp"
+        app:cardPreventCornerOverlap="true"
+        app:cornerRadius="12dp"
+        app:foregroundColor="#0DFFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/cardOtherApps"
+        app:layout_constraintTop_toBottomOf="@id/cardInfo"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="5dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/rate" />
+
+            <TextView
+                android:id="@+id/appRateTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:text="@string/rateApp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </com.loopeer.shadow.ShadowView>
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/cardOtherApps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:backgroundColor="@color/cardColor"
+        app:cardElevation="0.5dp"
+        app:cardMaxElevation="0dp"
+        app:cardPreventCornerOverlap="true"
+        app:cornerRadius="12dp"
+        app:foregroundColor="#0DFFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/cardShare"
+        app:layout_constraintTop_toBottomOf="@id/cardRate"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="5dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/other_apps" />
+
+            <TextView
+                android:id="@+id/otherAppsTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:text="@string/otherApps"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </com.loopeer.shadow.ShadowView>
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/cardShare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:backgroundColor="@color/cardColor"
+        app:cardElevation="0.5dp"
+        app:cardMaxElevation="0dp"
+        app:cardPreventCornerOverlap="true"
+        app:cornerRadius="12dp"
+        app:foregroundColor="#0DFFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/cardOtherApps"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="5dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/share_app" />
+
+            <TextView
+                android:id="@+id/shareAppTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:text="@string/shareApp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </com.loopeer.shadow.ShadowView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

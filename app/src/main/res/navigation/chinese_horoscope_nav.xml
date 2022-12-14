@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chinese_horoscope_nav"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.programmsoft.fragments.HomeFragment"
+        android:label="nav_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_predictionsFragment"
+            app:destination="@id/predictionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/predictionsFragment"
+        android:name="com.programmsoft.fragments.PredictionsFragment"
+        android:label="fragment_predictions"
+        tools:layout="@layout/fragment_predictions" >
+        <action
+            android:id="@+id/action_predictionsFragment_to_predictionsViewPagerFragment"
+            app:destination="@id/predictionsViewPagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutZodiacFragment"
+        android:name="com.programmsoft.fragments.AboutZodiacFragment"
+        android:label="fragment_about_zodiac"
+        tools:layout="@layout/fragment_about_zodiac" />
+    <fragment
+        android:id="@+id/nav_book"
+        android:name="com.programmsoft.fragments.BookFragment"
+        android:label="nav_book"
+        tools:layout="@layout/fragment_book" >
+        <action
+            android:id="@+id/action_bookFragment_to_aboutZodiacFragment2"
+            app:destination="@id/aboutZodiacFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_compatibility"
+        android:name="com.programmsoft.fragments.CompatibilityFragment"
+        android:label="nav_compatibility"
+        tools:layout="@layout/fragment_compatibility" >
+        <action
+            android:id="@+id/action_compatibilityFragment_to_resultCompatibilityFragment"
+            app:destination="@id/resultCompatibilityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/predictionsViewPagerFragment"
+        android:name="com.programmsoft.fragments.PredictionsViewPagerFragment"
+        android:label="fragment_predictions_view_pager"
+        tools:layout="@layout/fragment_predictions_view_pager" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.programmsoft.fragments.SettingsFragment"
+        android:label="nav_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/resultCompatibilityFragment"
+        android:name="com.programmsoft.fragments.ResultCompatibilityFragment"
+        android:label="fragment_result_compatibility"
+        tools:layout="@layout/fragment_result_compatibility" />
+</navigation>

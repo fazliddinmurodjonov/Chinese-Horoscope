@@ -1,0 +1,283 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.programmsoft.fragments.CompatibilityFragment">
+
+    <View
+        android:id="@+id/circleOuterMale"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@drawable/background_view_circle_outer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.30"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/circleInnerMale"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/dotted_circle"
+        app:layout_constraintBottom_toBottomOf="@id/circleOuterMale"
+        app:layout_constraintEnd_toEndOf="@id/circleOuterMale"
+        app:layout_constraintStart_toStartOf="@id/circleOuterMale"
+        app:layout_constraintTop_toTopOf="@id/circleOuterMale"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/selectMTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        android:text="@string/select_male"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/circleOuterMale"
+        app:layout_constraintEnd_toEndOf="@id/circleOuterMale"
+        app:layout_constraintStart_toStartOf="@id/circleOuterMale"
+        app:layout_constraintTop_toTopOf="@id/circleOuterMale"
+        tools:ignore="MissingConstraints" />
+
+
+    <ImageView
+        android:id="@+id/imgMale"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@id/circleInnerMale"
+        app:layout_constraintEnd_toEndOf="@id/circleInnerMale"
+        app:layout_constraintStart_toStartOf="@id/circleInnerMale"
+        app:layout_constraintTop_toTopOf="@id/circleInnerMale"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/constellationMaleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/circleOuterMale"
+        app:layout_constraintStart_toStartOf="@id/circleOuterMale"
+        app:layout_constraintTop_toBottomOf="@id/circleOuterMale"
+        tools:ignore="MissingConstraints" />
+
+    <!--    <com.loopeer.shadow.ShadowView-->
+    <!--        android:id="@+id/maleSignNameLayout"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="5dp"-->
+    <!--        android:foreground="?attr/selectableItemBackground"-->
+    <!--        app:backgroundColor="@color/cardColor"-->
+    <!--        app:cornerRadius="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/circleOuterMale"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/circleOuterMale"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/constellationMaleTv"-->
+    <!--        app:shadowColor="#40FFFFFF"-->
+    <!--        app:shadowMargin="3dp"-->
+    <!--        app:shadowRadius="10dp"-->
+    <!--        tools:ignore="MissingConstraints">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:layout_marginStart="10dp"-->
+    <!--            android:layout_marginEnd="15dp"-->
+    <!--            android:gravity="center"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <ImageView-->
+    <!--                android:layout_width="18dp"-->
+    <!--                android:layout_height="18dp"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:layout_marginEnd="5dp"-->
+    <!--                android:src="@drawable/man" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/maleTv"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:fontFamily="@font/inter"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="@string/man"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="14sp" />-->
+
+    <!--        </LinearLayout>-->
+    <!--    </com.loopeer.shadow.ShadowView>-->
+
+    <View
+        android:id="@+id/circleOuterFemale"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@drawable/background_view_circle_outer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/circleInnerFemale"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/dotted_circle"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@id/circleOuterFemale"
+        app:layout_constraintEnd_toEndOf="@id/circleOuterFemale"
+        app:layout_constraintStart_toStartOf="@id/circleOuterFemale"
+        app:layout_constraintTop_toTopOf="@id/circleOuterFemale"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/selectFTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        android:text="@string/select_female"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/circleOuterFemale"
+        app:layout_constraintEnd_toEndOf="@id/circleOuterFemale"
+        app:layout_constraintStart_toStartOf="@id/circleOuterFemale"
+        app:layout_constraintTop_toTopOf="@id/circleOuterFemale"
+        tools:ignore="MissingConstraints" />
+
+
+    <ImageView
+        android:id="@+id/imgFemale"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@id/circleInnerFemale"
+        app:layout_constraintEnd_toEndOf="@id/circleInnerFemale"
+        app:layout_constraintStart_toStartOf="@id/circleInnerFemale"
+        app:layout_constraintTop_toTopOf="@id/circleInnerFemale"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/constellationFemaleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/circleOuterFemale"
+        app:layout_constraintStart_toStartOf="@id/circleOuterFemale"
+        app:layout_constraintTop_toBottomOf="@id/circleOuterFemale"
+        tools:ignore="MissingConstraints" />
+
+    <!--    <com.loopeer.shadow.ShadowView-->
+    <!--        android:id="@+id/femaleSignNameLayout"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="5dp"-->
+    <!--        android:foreground="?attr/selectableItemBackground"-->
+    <!--        app:backgroundColor="@color/cardColor"-->
+    <!--        app:cornerRadius="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/circleOuterFemale"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/circleOuterFemale"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/constellationFemaleTv"-->
+    <!--        app:shadowColor="#40FFFFFF"-->
+    <!--        app:shadowMargin="3dp"-->
+    <!--        app:shadowRadius="10dp"-->
+    <!--        tools:ignore="MissingConstraints">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="30dp"-->
+    <!--            android:layout_marginStart="10dp"-->
+    <!--            android:layout_marginEnd="15dp"-->
+    <!--            android:gravity="center"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <ImageView-->
+    <!--                android:layout_width="28dp"-->
+    <!--                android:layout_height="28dp"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:src="@drawable/woman" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/femaleTv"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:fontFamily="@font/inter"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="@string/woman"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="14sp" />-->
+
+    <!--        </LinearLayout>-->
+    <!--    </com.loopeer.shadow.ShadowView>-->
+
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/checkCompBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:backgroundColor="@color/background"
+        app:cornerRadius="15dp"
+        app:foregroundColor="#0DFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="6dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/love_com" />
+
+            <TextView
+                android:id="@+id/compatibilityTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:text="@string/compatibilityBtn"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </com.loopeer.shadow.ShadowView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
