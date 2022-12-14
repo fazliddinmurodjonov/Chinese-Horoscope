@@ -16,7 +16,7 @@
         android:fontFamily="@font/inter_bold"
         android:gravity="center_vertical"
         android:text="@string/settings"
-        android:textColor="@color/textColor"
+        android:textColor="@color/white"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@id/cardLang"
         app:layout_constraintEnd_toEndOf="parent"

@@ -12,4 +12,7 @@
     <color name="cardColor">#000610</color>
     <color name="itemBookColor">#020B1E</color>
     <color name="textColor">#D0AF51</color>
+    <color name="red">#F10A0A</color>
+    <color name="green">#14F92B</color>
+    <color name="blue">#093DF9</color>
 </resources>
