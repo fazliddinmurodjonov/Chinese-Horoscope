@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     tools:context="com.programmsoft.fragments.HomeFragment">
-
-
     <TextView
         android:id="@+id/horoscopeTV"
         android:layout_width="wrap_content"
