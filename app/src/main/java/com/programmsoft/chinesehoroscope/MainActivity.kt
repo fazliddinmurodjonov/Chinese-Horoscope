@@ -49,28 +49,28 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     var checkDatabase = true
 
     companion object {
-        var horoscopeList = ArrayList<Zodiac>()
+        var zodiacList = ArrayList<Zodiac>()
         var percentageList = ArrayList<Percentages>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SharedPreference.init(this)
-        percentageList = getPercentageList()
+        percentageList = getPercentagesList()
         navigationUI()
         changeTextLang()
         handler = Handler(Looper.getMainLooper())
-        horoscopeList = loadHoroscopeWithLang(SharedPreference.lang!!)
+        zodiacList = loadHoroscopeWithLang(SharedPreference.lang!!)
 
-        if (SharedPreference.updateDB == 0) {
-            checkNetworkConnection()
-        }
-        if (SharedPreference.updateDBTime == "") {
-            SharedPreference.updateDBTime = getTime()
-            handler = Handler(Looper.getMainLooper())
-            firstUpload = 1
-            handler.postDelayed(runnable, 0)
-        }
+//        if (SharedPreference.updateDB == 0) {
+//            checkNetworkConnection()
+//        }
+//        if (SharedPreference.updateDBTime == "") {
+//            SharedPreference.updateDBTime = getTime()
+//            handler = Handler(Looper.getMainLooper())
+//            firstUpload = 1
+//            handler.postDelayed(runnable, 0)
+//        }
     }
 
     private fun checkNetworkConnection() {
@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         registerReceiver(checkNetworkConnection, intentFilter)
         handler.postDelayed(runnable, 0)
     }
-
     private var runnable = object : Runnable {
         override fun run() {
             if (NetworkHelper(this@MainActivity).isNetworkConnected()) {
@@ -105,8 +104,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
         }
     }
-
-
     private fun uploadWorkManager() {
         val uploadChineseHoroscope: WorkRequest =
             PeriodicWorkRequestBuilder<UpdateDBService>(2, TimeUnit.HOURS)
@@ -121,7 +118,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val date = LocalDateTime.now()
         return date.format(formatter)
     }
-
     private fun navigationUI() {
         navController = findNavController(R.id.nav_host_fragment_content_main)
         val btnView = binding.btnNav
@@ -146,22 +142,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         R.id.resultCompatibilityFragment)
 
     private fun loadHoroscopeWithLang(lang: String): ArrayList<Zodiac> {
-        var horoscopeList = ArrayList<Zodiac>()
+        var zodiacList = ArrayList<Zodiac>()
         when (lang) {
             "uz" -> {
-                val loadHoroscopeFromAsset = loadJSONFromAsset("horoscope_uzbek")
-                horoscopeList = loadHoroscope(loadHoroscopeFromAsset!!)
-            }
-            "ru" -> {
-                val loadHoroscopeFromAsset = loadJSONFromAsset("horoscope_russian")
-                horoscopeList = loadHoroscope(loadHoroscopeFromAsset!!)
+                val loadHoroscopeFromAsset = loadJSONFromAsset("zodiac_uzbek")
+                zodiacList = loadHoroscope(loadHoroscopeFromAsset!!)
             }
             "kr" -> {
-                val loadHoroscopeFromAsset = loadJSONFromAsset("horoscope_kirill")
-                horoscopeList = loadHoroscope(loadHoroscopeFromAsset!!)
+                val loadHoroscopeFromAsset = loadJSONFromAsset("zodiac_kirill")
+                zodiacList = loadHoroscope(loadHoroscopeFromAsset!!)
             }
         }
-        return horoscopeList
+        return zodiacList
     }
 
     private fun loadHoroscope(json: String): ArrayList<Zodiac> {
@@ -198,7 +190,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         bottomNav.menu.findItem(R.id.nav_settings)
     }
 
-    fun getPercentageList(): ArrayList<Percentages> {
+    fun getPercentagesList(): ArrayList<Percentages> {
         var list = ArrayList<Percentages>()
         for (i in 0 until 12) {
             val percentages = Percentages(getRandomNumber(),
@@ -219,7 +211,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 //    override fun sendInput(input: String?) {
 //        changeTextLang()
 //        navController.navigate(R.id.nav_settings)
-//        horoscopeList = loadHoroscopeWithLang(SharedPreference.lang!!)
+//        zodiacList = loadHoroscopeWithLang(SharedPreference.lang!!)
 //    }
 
     override fun onStop() {

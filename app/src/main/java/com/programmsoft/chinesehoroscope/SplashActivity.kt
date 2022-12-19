@@ -37,6 +37,7 @@ class SplashActivity : AppCompatActivity(R.layout.activity_splash) {
     }
 
     private fun uploadUI() {
+        SharedPreference.init(this)
         Handler(Looper.getMainLooper()).postDelayed({
             if (SharedPreference.selectLanguage == 1) {
                 langThemeDialog()

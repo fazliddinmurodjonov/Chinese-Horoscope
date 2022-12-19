@@ -28,7 +28,7 @@
             app:expandedTitleTextAppearance="@style/CollapsedAppBar"
             app:expandedTitleTextColor="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="@string/item_horoscope_name">
+            app:title="@string/item_zodiac_name">
 
             <ImageView
                 android:id="@+id/constellationImg"

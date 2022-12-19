@@ -5,56 +5,99 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.programmsoft.adapters.ZodiacAdapter
+import com.programmsoft.chinesehoroscope.MainActivity
 import com.programmsoft.chinesehoroscope.R
+import com.programmsoft.chinesehoroscope.databinding.FragmentHomeBinding
+import com.programmsoft.models.Zodiac
+import com.programmsoft.utils.CreateDB
+import com.programmsoft.utils.SharedPreference
+import java.io.IOException
+import java.io.InputStream
+import java.lang.reflect.Type
+import java.nio.charset.Charset
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+class HomeFragment : Fragment(R.layout.fragment_home) {
+    private val binding: FragmentHomeBinding by viewBinding()
+    private var zodiacList = ArrayList<Zodiac>()
+    private lateinit var adapter: ZodiacAdapter
+    private val db = CreateDB.db
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        SharedPreference.init(requireActivity())
+     updateLang()
+        uploadRecycler()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    private fun updateLang() {
+        binding.horoscopeTV.setText(R.string.chinese_horoscope)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun uploadRecycler() {
+        zodiacList = loadHoroscopeWithLang(SharedPreference.lang!!)
+        binding.horoscopeRV.viewTreeObserver.addOnPreDrawListener(object :
+            ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                if (binding.horoscopeRV.viewTreeObserver.isAlive) binding.horoscopeRV.viewTreeObserver.removeOnPreDrawListener(
+                    this)
+                val width = binding.horoscopeRV.width.toFloat() / 5
+                val height = binding.horoscopeRV.height.toFloat() / 5
+                adapter = ZodiacAdapter(width, height)
+                adapter.submitList(MainActivity.zodiacList)
+                binding.horoscopeRV.adapter = adapter
+                adapter.setOnItemClickListener {
+                    if (db.zodiacBaseDao().getAll().isNotEmpty()) {
+                        val bundleOf = bundleOf("id" to it)
+                        findNavController().navigate(R.id.predictionsFragment, bundleOf)
+                    }
+
                 }
+                return true
             }
+        })
+    }
+
+    private fun loadHoroscopeWithLang(lang: String): ArrayList<Zodiac> {
+        var zodiacList = ArrayList<Zodiac>()
+        when (lang) {
+            "uz" -> {
+                val loadHoroscopeFromAsset = loadJSONFromAsset("zodiac_uzbek")
+                zodiacList = loadHoroscope(loadHoroscopeFromAsset!!)
+            }
+
+            "kr" -> {
+                val loadHoroscopeFromAsset = loadJSONFromAsset("zodiac_kirill")
+                zodiacList = loadHoroscope(loadHoroscopeFromAsset!!)
+            }
+        }
+        return zodiacList
+    }
+
+    private fun loadHoroscope(json: String): ArrayList<Zodiac> {
+        val gson = Gson()
+        val type: Type = object : TypeToken<ArrayList<Zodiac>>() {}.type
+        return gson.fromJson(json, type)
+    }
+
+    private fun loadJSONFromAsset(jsonName: String): String? {
+        var json: String? = try {
+            val inputStream: InputStream = requireActivity().assets.open("$jsonName.json")
+            val sizeOfFile = inputStream.available()
+            val bufferDate = ByteArray(sizeOfFile)
+            inputStream.read(bufferDate)
+            inputStream.close()
+            String(bufferDate, Charset.forName("UTF-8"))
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return null
+        }
+        return json
     }
 }

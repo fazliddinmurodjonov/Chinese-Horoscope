@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">ChineseHoroscope</string>
     <string name="chinese_horoscope">Мучаллар\nбашорати</string>
-    <string name="item_horoscope_name">Quyon</string>
+    <string name="item_zodiac_name">Quyon</string>
     <string name="about_zodiacs">Мучаллар ҳақида маълумот</string>
     <string name="about_rabbit">Қуён</string>
     <string name="monkey">Маймун</string>

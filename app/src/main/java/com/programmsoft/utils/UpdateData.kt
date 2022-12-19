@@ -13,7 +13,7 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 object UpdateData {
-    var percentageList: ArrayList<Percentages> = percentageList()
+    var percentageList: ArrayList<Percentages> = percentagesList()
 
     fun updateHoroscope(paramFirst: Int) {
         SharedPreference.init(App.instance)
@@ -33,20 +33,20 @@ object UpdateData {
                         body?.forEach { c ->
                             var zodiacId =
                                 db.zodiacBaseDao().getById(c.id)
-//                            zodiacId.todayUzb = c.today_uzb
-//                            zodiacId.tomorrowUzb = c.tomorrow_uzb
-//                            zodiacId.dateToday = getDate(0)
-//                            conById.dateTomorrow = getDate(1)
-//                            conById.workToday = conById.workTomorrow
-//                            conById.healthToday = conById.healthTomorrow
-//                            conById.loveToday = conById.loveTomorrow
-//                            conById.workTomorrow =
-//                                percentageList[c.id.toInt() - 1].tomorrowWork
-//                            conById.healthTomorrow =
-//                                percentageList[c.id.toInt() - 1].tomorrowHealth
-//                            conById.loveTomorrow =
-//                                percentageList[c.id.toInt() - 1].tomorrowLove
-//                            db.constellationsBaseDao().update(conById)
+                            zodiacId.todayUzb = c.today_uzb
+                            zodiacId.tomorrowUzb = c.tomorrow_uzb
+                            zodiacId.dateToday = getDate(0)
+                            zodiacId.dateTomorrow = getDate(1)
+                            zodiacId.workToday = zodiacId.workTomorrow
+                            zodiacId.healthToday = zodiacId.healthTomorrow
+                            zodiacId.loveToday = zodiacId.loveTomorrow
+                            zodiacId.workTomorrow =
+                                percentageList[c.id - 1].tomorrowWork
+                            zodiacId.healthTomorrow =
+                                percentageList[c.id - 1].tomorrowHealth
+                            zodiacId.loveTomorrow =
+                                percentageList[c.id - 1].tomorrowLove
+                            db.zodiacBaseDao().update(zodiacId)
                         }
                     }
                 }
@@ -75,7 +75,7 @@ object UpdateData {
     }
 
 
-    fun percentageList(): ArrayList<Percentages> {
+    private fun percentagesList(): ArrayList<Percentages> {
         var list = ArrayList<Percentages>()
         for (i in 0 until 12) {
             val percentages = Percentages(getRandomNumber(),

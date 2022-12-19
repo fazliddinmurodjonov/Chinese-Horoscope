@@ -18,11 +18,7 @@
         android:id="@+id/predictionsFragment"
         android:name="com.programmsoft.fragments.PredictionsFragment"
         android:label="fragment_predictions"
-        tools:layout="@layout/fragment_predictions" >
-        <action
-            android:id="@+id/action_predictionsFragment_to_predictionsViewPagerFragment"
-            app:destination="@id/predictionsViewPagerFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_predictions" />
     <fragment
         android:id="@+id/aboutZodiacFragment"
         android:name="com.programmsoft.fragments.AboutZodiacFragment"

@@ -30,16 +30,16 @@
             android:id="@+id/horoscopeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="10dp"
             android:background="@color/cardColor">
 
             <ImageView
                 android:id="@+id/horoscopeImg"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/rabbit"
                 app:layout_constraintBottom_toTopOf="@id/horoscopeTv"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,11 +55,12 @@
                 android:gravity="center"
                 android:text="@string/item_zodiac_name"
                 android:textColor="@color/white"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/horoscopeImg" />
+                app:layout_constraintTop_toBottomOf="@id/horoscopeImg"
+                tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.loopeer.shadow.ShadowView>
 

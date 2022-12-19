@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/inter_light"
-            android:text="@string/item_horoscope_name"
+            android:text="@string/item_zodiac_name"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
