@@ -1,9 +1,6 @@
 package com.programmsoft.models
 
 class Compatibility {
-    var rooster: String? = null
-    var dog: String? = null
-    var pig: String? = null
     var rat: String? = null
     var ox: String? = null
     var tiger: String? = null
@@ -13,4 +10,7 @@ class Compatibility {
     var horse: String? = null
     var goat: String? = null
     var monkey: String? = null
+    var rooster: String? = null
+    var dog: String? = null
+    var pig: String? = null
 }

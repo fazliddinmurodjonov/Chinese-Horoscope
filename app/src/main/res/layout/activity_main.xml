@@ -4,23 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#020B1E"
+    android:background="@color/background"
     tools:context=".MainActivity">
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loveAnim"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:adjustViewBounds="true"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
+
+    <fragment
+        android:id="@+id/nav_host_fragment_content_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/love"
-        tools:ignore="MissingClass" />
+        app:navGraph="@navigation/chinese_horoscope_nav" />
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/bottomNavShadowView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:foreground="?attr/selectableItemBackground"
+        app:backgroundColor="@color/cardColor"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="6dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/btn_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:elevation="0dp"
+            app:itemIconSize="28dp"
+            app:itemIconTint="@null"
+            app:itemRippleColor="@color/cardColor"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+            app:menu="@menu/menu" />
+    </com.loopeer.shadow.ShadowView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

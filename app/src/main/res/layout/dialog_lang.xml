@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/cardLang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:backgroundColor="@color/cardColor"
+        app:cornerRadius="12dp"
+        app:foregroundColor="#0DFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shadowColor="#40FFFFFF"
+        app:shadowMargin="5dp"
+        app:shadowRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/selectLangTv"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/langSelect"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/langRadioGroup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/flagsLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="15dp"
+                android:orientation="vertical"
+                android:weightSum="2"
+                app:layout_constraintBottom_toBottomOf="@id/langRadioGroup"
+                app:layout_constraintEnd_toStartOf="@id/langRadioGroup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/langRadioGroup"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/flag_uz"
+                    tools:ignore="ContentDescription" />
+
+
+                <!--                <ImageView-->
+                <!--                    android:layout_width="24dp"-->
+                <!--                    android:layout_height="24dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:src="@drawable/flag_en" />-->
+
+                <!--                <ImageView-->
+                <!--                    android:layout_width="24dp"-->
+                <!--                    android:layout_height="24dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:src="@drawable/flag_az" />-->
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/flag_uz"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/langRadioGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/flagsLayout"
+                app:layout_constraintTop_toBottomOf="@id/selectLangTv"
+                tools:ignore="MissingConstraints">
+
+                <RadioButton
+                    android:id="@+id/langUz"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:button="@drawable/radio_btn_icon"
+                    android:buttonTint="@android:color/transparent"
+                    android:buttonTintMode="screen"
+                    android:fontFamily="@font/inter"
+                    android:layoutDirection="rtl"
+                    android:text="@string/langUzb"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:ignore="OnClick,UsingOnClickInXml" />
+
+                <!--                <RadioButton-->
+                <!--                    android:id="@+id/langEn"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="45dp"-->
+                <!--                    android:layout_gravity="center_vertical"-->
+                <!--                    android:button="@drawable/radio_btn_icon"-->
+                <!--                    android:buttonTint="@android:color/transparent"-->
+                <!--                    android:buttonTintMode="screen"-->
+                <!--                    android:fontFamily="@font/inter"-->
+                <!--                    android:layoutDirection="rtl"-->
+                <!--                    android:text="@string/langEn"-->
+                <!--                    android:textColor="@color/textColor"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    tools:ignore="OnClick,UsingOnClickInXml" />-->
+
+                <!--                <RadioButton-->
+                <!--                    android:id="@+id/langAz"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="45dp"-->
+                <!--                    android:layout_gravity="center_vertical"-->
+                <!--                    android:button="@drawable/radio_btn_icon"-->
+                <!--                    android:buttonTint="@android:color/transparent"-->
+                <!--                    android:buttonTintMode="screen"-->
+                <!--                    android:fontFamily="@font/inter"-->
+                <!--                    android:layoutDirection="rtl"-->
+                <!--                    android:text="@string/langAz"-->
+                <!--                    android:textColor="@color/textColor"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    tools:ignore="OnClick,UsingOnClickInXml" />-->
+
+                <RadioButton
+                    android:id="@+id/langKr"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:button="@drawable/radio_btn_icon"
+                    android:buttonTint="@android:color/transparent"
+                    android:buttonTintMode="screen"
+                    android:fontFamily="@font/inter"
+                    android:layoutDirection="rtl"
+                    android:text="@string/langKrill"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:ignore="OnClick,UsingOnClickInXml" />
+            </RadioGroup>
+
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/btnLayout"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="15dp"-->
+            <!--                android:layout_marginEnd="25dp"-->
+            <!--                android:layout_marginBottom="15dp"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/langRadioGroup"-->
+            <!--                tools:ignore="MissingConstraints">-->
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/cancelTv"-->
+            <!--                    style="@style/TextStyle"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginEnd="25dp"-->
+            <!--                    android:clickable="true"-->
+            <!--                    android:foreground="?android:attr/selectableItemBackground"-->
+            <!--                    android:text="@string/langCancel"-->
+            <!--                    android:textColor="@color/textColor"-->
+            <!--                    android:textSize="16sp"-->
+            <!--                    tools:ignore="MissingConstraints" />-->
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/saveTv"-->
+            <!--                    style="@style/TextStyle"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:clickable="true"-->
+            <!--                    android:foreground="?android:attr/selectableItemBackground"-->
+            <!--                    android:text="@string/langSave"-->
+            <!--                    android:textColor="@color/textColor"-->
+            <!--                    android:textSize="16sp"-->
+            <!--                    tools:ignore="MissingConstraints" />-->
+            <!--            </LinearLayout>-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.loopeer.shadow.ShadowView>
+</LinearLayout>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ChineseHoroscope</string>
     <string name="chinese_horoscope">Muchallar\nbashorati</string>
@@ -42,5 +43,4 @@
     <string name="connection">Iltimos, internetga  ulanishni tekshirib  ko‘ring va qaytadan urining.</string>
     <string name="select_male">Sizning\nbelgingiz</string>
     <string name="select_female">Juftingiz\nbelgisi</string>
-
 </resources>

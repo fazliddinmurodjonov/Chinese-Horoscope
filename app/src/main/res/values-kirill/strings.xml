@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChineseHoroscope</string>
+    <string name="chinese_horoscope">Мучаллар\nбашорати</string>
+    <string name="item_horoscope_name">Quyon</string>
+    <string name="about_zodiacs">Мучаллар ҳақида маълумот</string>
+    <string name="about_rabbit">Қуён</string>
+    <string name="monkey">Маймун</string>
+    <!--- About Program Dialog-->
+    <string name="aboutApp">Кундалик мучаллар башоратларини бериб борувчи илова.</string>
+    <string name="aboutUs">Биз ҳақимизда</string>
+    <string name="company">Компания: Programm Soft Ltd</string>
+    <string name="web_site">Сайт: programmsoft.uz</string>
+    <string name="version">Версия: 1.0.0</string>
+    <string name="mail">Маил: programmsoftuz@gmail.com</string>
+    <string name="phone">Телефон: +99871 233 16 36</string>
+    <string name="playMarketLink">https://play.google.com/store/apps/dev?id=5705777915421890833</string>
+    <string name="downloadApp">Dasturni yuklab olish</string>
+    <string name="lang">Тил</string>
+    <string name="lang_type">Ўзбекча</string>
+    <string name="infoApp">Илова ҳақида</string>
+    <string name="notification">Билдиришнома</string>
+    <string name="rateApp">Иловани баҳолаш</string>
+    <string name="otherApps">Бошқа иловалар</string>
+    <string name="shareApp">Улашиш</string>
+    <string name="settings">Созламалар</string>
+    <string name="langSelect">Тилни танланг</string>
+    <string name="langUzb">O‘zbekcha</string>
+    <string name="langRu">Русский</string>
+    <string name="langKrill">Ўзбек тили</string>
+    <string name="otherCouple">Жуфтлик танлаш</string>
+    <string name="result">Натижа</string>
+    <string name="compatibilityBtn">Мосликни текшириш</string>
+    <string name="compatibilityResult">Мослик</string>
+    <string name="work">Иш</string>
+    <string name="health">Соғлик</string>
+    <string name="love">Севги</string>
+    <string name="today">Бугун</string>
+    <string name="tomorrow">Ертага</string>
+    <string name="updateHoroscopeNotification">Мучаллар башорати янгиланди.</string>
+    <string name="try_again">Қайтадан уриниш</string>
+    <string name="connection">Илтимос, интернетга уланишни текшириб кўринг ва қайтадан урининг.</string>
+    <string name="select_male">Сизнинг\nбелгингиз</string>
+    <string name="select_female">Жуфтингиз\nбелгиси</string>
+
+</resources>
