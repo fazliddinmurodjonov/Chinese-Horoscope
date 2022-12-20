@@ -25,7 +25,7 @@
             app:collapsedTitleTextAppearance="@style/TextStyle"
             app:collapsedTitleTextColor="@color/white"
             app:contentScrim="@color/background"
-            app:expandedTitleGravity="center"
+            app:expandedTitleGravity="center|bottom"
             app:expandedTitleTextAppearance="@style/CollapsedAppBar"
             app:expandedTitleTextColor="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -91,7 +91,8 @@
                     app:layout_constraintBottom_toBottomOf="@id/backBtn"
                     app:layout_constraintEnd_toEndOf="@id/backBtn"
                     app:layout_constraintStart_toStartOf="@id/backBtn"
-                    app:layout_constraintTop_toTopOf="@id/backBtn" />
+                    app:layout_constraintTop_toTopOf="@id/backBtn"
+                    tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -115,20 +116,20 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/constellationImg"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:id="@+id/zodiacImg"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="15dp"
                 android:src="@drawable/about_rabbit"
-                app:layout_constraintBottom_toTopOf="@id/constellationTv"
+                app:layout_constraintBottom_toTopOf="@id/zodiacTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="ContentDescription,MissingConstraints" />
 
             <TextView
-                android:id="@+id/constellationTv"
+                android:id="@+id/zodiacTV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
@@ -143,7 +144,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constellationImg" />
+                app:layout_constraintTop_toBottomOf="@id/zodiacImg" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

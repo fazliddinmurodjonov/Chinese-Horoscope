@@ -21,6 +21,7 @@ import com.google.android.play.core.review.ReviewManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.programmsoft.chinesehoroscope.databinding.ActivityMainBinding
+import com.programmsoft.fragments.LangFragment
 import com.programmsoft.models.Percentages
 import com.programmsoft.models.Zodiac
 import com.programmsoft.services.CheckNetworkConnection
@@ -36,11 +37,11 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : AppCompatActivity(R.layout.activity_main), LangFragment.OnInputListener {
     private val binding: ActivityMainBinding by viewBinding()
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
-    var checkNetworkConnection = CheckNetworkConnection()
+    private var checkNetworkConnection = CheckNetworkConnection()
     lateinit var handler: Handler
     lateinit var updateManager: ReviewManager
     val db = CreateDB.db
@@ -79,6 +80,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         registerReceiver(checkNetworkConnection, intentFilter)
         handler.postDelayed(runnable, 0)
     }
+
     private var runnable = object : Runnable {
         override fun run() {
             if (NetworkHelper(this@MainActivity).isNetworkConnected()) {
@@ -104,6 +106,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
         }
     }
+
     private fun uploadWorkManager() {
         val uploadChineseHoroscope: WorkRequest =
             PeriodicWorkRequestBuilder<UpdateDBService>(2, TimeUnit.HOURS)
@@ -118,6 +121,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val date = LocalDateTime.now()
         return date.format(formatter)
     }
+
     private fun navigationUI() {
         navController = findNavController(R.id.nav_host_fragment_content_main)
         val btnView = binding.btnNav
@@ -190,7 +194,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         bottomNav.menu.findItem(R.id.nav_settings)
     }
 
-    fun getPercentagesList(): ArrayList<Percentages> {
+    private fun getPercentagesList(): ArrayList<Percentages> {
         var list = ArrayList<Percentages>()
         for (i in 0 until 12) {
             val percentages = Percentages(getRandomNumber(),
@@ -208,11 +212,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         return Random.nextInt(65..85)
     }
 
-//    override fun sendInput(input: String?) {
-//        changeTextLang()
-//        navController.navigate(R.id.nav_settings)
-//        zodiacList = loadHoroscopeWithLang(SharedPreference.lang!!)
-//    }
+    override fun sendInput(input: String?) {
+        changeTextLang()
+        navController.navigate(R.id.nav_settings)
+        zodiacList = loadHoroscopeWithLang(SharedPreference.lang!!)
+    }
 
     override fun onStop() {
         super.onStop()

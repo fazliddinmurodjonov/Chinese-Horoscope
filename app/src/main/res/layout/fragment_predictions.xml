@@ -31,12 +31,12 @@
             app:title="@string/item_zodiac_name">
 
             <ImageView
-                android:id="@+id/constellationImg"
+                android:id="@+id/zodiacImg"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="25dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="15dp"
                 android:src="@drawable/about_rabbit"
                 tools:ignore="ContentDescription,MissingConstraints,RtlHardcoded" />
 
@@ -105,20 +105,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/aboutLayout"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background">
+        android:background="@color/background"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/aboutApp"
             app:layout_constraintBottom_toTopOf="@id/viewPager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:tabGravity="fill"
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorColor="@color/white"
@@ -138,10 +139,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/tabLayout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

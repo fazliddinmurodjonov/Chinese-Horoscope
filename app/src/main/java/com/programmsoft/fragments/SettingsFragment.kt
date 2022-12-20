@@ -1,60 +1,91 @@
 package com.programmsoft.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.programmsoft.chinesehoroscope.R
+import com.programmsoft.chinesehoroscope.databinding.FragmentSettingsBinding
+import com.programmsoft.utils.SharedPreference
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class SettingsFragment : Fragment(R.layout.fragment_settings) {
+    private val binding: FragmentSettingsBinding by viewBinding()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        SharedPreference.init(requireActivity())
+        clickBtns()
+        updateLangTextsFragment()
+    }
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SettingsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private fun clickBtns() {
+        binding.cardLang.setOnClickListener {
+            langDialog("lang")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        }
+        binding.notificationMode.isChecked = SharedPreference.notificationTurnOn == 1
+
+        binding.notificationMode.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                SharedPreference.notificationTurnOn = 1
+            } else {
+                SharedPreference.notificationTurnOn = 0
+            }
+        }
+
+        binding.cardInfo.setOnClickListener {
+            aboutAppDialog()
+        }
+        binding.cardRate.setOnClickListener {
+            val uri: Uri =
+                Uri.parse("https://play.google.com/store/apps/details?id=" + requireActivity().packageName)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
+        binding.cardOtherApps.setOnClickListener {
+            val url = "https://play.google.com/store/apps/dev?id=5705777915421890833"
+            val uriUrl: Uri = Uri.parse(url)
+            val launchBrowser = Intent(Intent.ACTION_VIEW, uriUrl)
+            startActivity(launchBrowser)
+        }
+        binding.cardShare.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT,
+                    getString(R.string.chinese_horoscope) +
+                            "\n" +
+                            "\uD83D\uDC47" +
+                            getString(R.string.downloadApp) +
+                            "\uD83D\uDC47\n" +
+                            "https://play.google.com/store/apps/details?id=" + requireActivity().packageName)
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+    private fun langDialog(langTheme: String) {
+        val langThemeFragment = LangFragment()
+        langThemeFragment.show(requireActivity().supportFragmentManager, langTheme)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SettingsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun updateLangTextsFragment() {
+        binding.langTv.text = getString(R.string.lang)
+        binding.langSelectedTv.text = getString(R.string.lang_type)
+        binding.appInfoTv.text = getString(R.string.infoApp)
+        binding.appRateTv.text = getString(R.string.rateApp)
+        binding.otherAppsTv.text = getString(R.string.otherApps)
+        binding.shareAppTv.text = getString(R.string.shareApp)
+        binding.appBarLayout.text = getString(R.string.settings)
+    }
+
+
+    private fun aboutAppDialog() {
+        val aboutProgramFragment = AboutProgramFragment()
+        aboutProgramFragment.show(requireActivity().supportFragmentManager, "About Program Dialog")
     }
 }

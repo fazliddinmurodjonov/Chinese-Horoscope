@@ -1,60 +1,136 @@
 package com.programmsoft.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.programmsoft.chinesehoroscope.R
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.programmsoft.chinesehoroscope.databinding.FragmentPredictionsViewPagerBinding
+import com.programmsoft.room.entity.ZodiacBase
+import com.programmsoft.utils.CreateDB
+import com.programmsoft.utils.SharedPreference
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val POSITION = "position"
+private const val ZODIAC_ID = "zodiac_id"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PredictionsViewPagerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PredictionsViewPagerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val binding: FragmentPredictionsViewPagerBinding by viewBinding()
+    private var position: Int? = null
+    private var zodiacId: Int? = null
+    val db = CreateDB.db
+    val handler = Handler(Looper.getMainLooper())
+    var zodiac = ZodiacBase()
+    var progressWork = 0
+    var progressHealth = 0
+    var progressLove = 0
+    var workCount = 0
+    var healthCount = 0
+    var loveCount = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loadData()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_predictions_view_pager, container, false)
+    private fun loadData() {
+        SharedPreference.init(requireActivity())
+        arguments?.let {
+            position = it.getInt(POSITION)
+            zodiacId = it.getInt(ZODIAC_ID)
+        }
+        zodiac = db.zodiacBaseDao().getById(zodiacId!!)
+        when (SharedPreference.lang) {
+            "uz" -> {
+                when (position) {
+                    0 -> {
+                        binding.predictionTv.text = zodiac.todayUzb
+                        workCount = zodiac.workToday!!
+                        healthCount = zodiac.healthToday!!
+                        loveCount = zodiac.loveToday!!
+                    }
+                    1 -> {
+                        binding.predictionTv.text = zodiac.tomorrowUzb
+                        workCount = zodiac.workTomorrow!!
+                        healthCount = zodiac.healthTomorrow!!
+                        loveCount = zodiac.loveTomorrow!!
+                    }
+                }
+            }
+            "kr" -> {
+                when (position) {
+                    0 -> {
+                        binding.predictionTv.text = zodiac.todayUzb
+                        workCount = zodiac.workToday!!
+                        healthCount = zodiac.healthToday!!
+                        loveCount = zodiac.loveToday!!
+                    }
+                    1 -> {
+                        binding.predictionTv.text = zodiac.tomorrowUzb
+                        workCount = zodiac.workTomorrow!!
+                        healthCount = zodiac.healthTomorrow!!
+                        loveCount = zodiac.loveTomorrow!!
+                    }
+                }
+            }
+        }
+        handler.postDelayed(runnableWork, 0)
+        handler.postDelayed(runnableHealth, 0)
+        handler.postDelayed(runnableLove, 0)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PredictionsViewPagerFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(position: Int, zodiacId: Int) =
             PredictionsViewPagerFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt(POSITION, position)
+                    putInt(ZODIAC_ID, zodiacId)
                 }
             }
+    }
+    private val runnableWork = object : Runnable {
+        override fun run() {
+            if (progressWork <= workCount) {
+                binding.workProgressBar.progress = progressWork
+                binding.workCountTv.text = progressWork.toString()
+                progressWork++
+                handler.postDelayed(this, 5)
+            } else {
+                handler.removeCallbacks(this)
+                progressWork = 0
+            }
+        }
+    }
+    private val runnableHealth = object : Runnable {
+        override fun run() {
+            if (progressHealth <= healthCount) {
+                binding.healthProgressBar.progress = progressHealth
+                binding.healthCountTv.text = progressHealth.toString()
+                progressHealth++
+                handler.postDelayed(this, 5)
+            } else {
+                handler.removeCallbacks(this)
+            }
+        }
+    }
+    private val runnableLove = object : Runnable {
+        override fun run() {
+            if (progressLove <= loveCount) {
+                binding.loveProgressBar.progress = progressLove
+                binding.loveCountTv.text = progressHealth.toString()
+                progressLove++
+                handler.postDelayed(this, 5)
+            } else {
+                handler.removeCallbacks(this)
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        handler.removeCallbacks(runnableWork)
+        handler.removeCallbacks(runnableHealth)
+        handler.removeCallbacks(runnableLove)
     }
 }

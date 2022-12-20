@@ -5,56 +5,114 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.programmsoft.chinesehoroscope.MainActivity
 import com.programmsoft.chinesehoroscope.R
+import com.programmsoft.chinesehoroscope.databinding.FragmentCompatibilityBinding
+import com.programmsoft.utils.App
+import com.programmsoft.utils.SharedPreference
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CompatibilityFragment : Fragment(R.layout.fragment_compatibility) {
+    private val binding: FragmentCompatibilityBinding by viewBinding()
+    var clickMale = true
+    var clickFemale = true
+    var eventDismiss = 0
+    var posMale = -1
+    var posFemale = -1
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CompatibilityFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CompatibilityFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        SharedPreference.init(requireActivity())
+        clickBtns()
+        getResultFromDialogFragment()
+        updateLangTextsFragment()
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private fun clickBtns() {
+        binding.imgMale.setOnClickListener {
+            if (clickMale) {
+                horoscopeDialog("male")
+                clickMale = false
+            }
+        }
+        binding.imgFemale.setOnClickListener {
+            if (clickFemale) {
+                horoscopeDialog("female")
+                clickFemale = false
+            }
+        }
+        binding.checkCompBtn.setOnClickListener {
+            if (posMale != -1 && posFemale != -1) {
+                val compBundle = bundleOf("posOne" to posMale, "posTwo" to posFemale)
+                findNavController().navigate(R.id.resultCompatibilityFragment, compBundle)
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_compatibility, container, false)
+    private fun getResultFromDialogFragment() {
+        requireActivity().supportFragmentManager
+            .setFragmentResultListener("requestKey", this) { _, bundle ->
+                val gender = bundle.getString("gender")
+                val position = bundle.getInt("position")
+                eventDismiss = bundle.getInt("eventDismiss")
+                if (eventDismiss == -1) {
+                    clickMale = true
+                    clickFemale = true
+                }
+                setData(gender, position)
+            }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CompatibilityFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CompatibilityFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun updateLangTextsFragment() {
+        with(binding)
+        {
+            selectMTv.text = getString(R.string.select_male)
+            selectFTv.text = getString(R.string.select_female)
+            compatibilityTv.text = getString(R.string.compatibilityBtn)
+        }
+    }
+        private fun horoscopeDialog(langTheme: String) {
+        val compatibilityDialogFragment = CompatibilityDialogFragment()
+        compatibilityDialogFragment.show(requireActivity().supportFragmentManager, langTheme)
+    }
+
+    private fun setData(gender: String?, position: Int?) {
+        when (gender) {
+            "male" -> {
+                val constellations = MainActivity.zodiacList[position!! - 1]
+                posMale = position - 1
+                val drawableStr = constellations.img
+                val imageId = App.instance.resources.getIdentifier(drawableStr!!.lowercase(),
+                    "drawable",
+                    App.instance.packageName)
+                binding.imgMale.setImageResource(imageId)
+                binding.constellationMaleTv.text = constellations.name
+                clickMale = true
+                eventDismiss = 0
+                binding.circleInnerMale.setBackgroundResource(R.drawable.background_view_circle_inner)
+                binding.selectMTv.visibility = View.INVISIBLE
             }
+            "female" -> {
+                val constellations = MainActivity.zodiacList[position!! - 1]
+                posFemale = position - 1
+                val drawableStr = constellations.img
+                val imageId = App.instance.resources.getIdentifier(drawableStr!!.lowercase(),
+                    "drawable",
+                    App.instance.packageName)
+                binding.imgFemale.setImageResource(imageId)
+                binding.constellationFemaleTv.text = constellations.name
+                clickFemale = true
+                eventDismiss = 0
+                binding.circleInnerFemale.setBackgroundResource(R.drawable.background_view_circle_inner)
+                binding.selectFTv.visibility = View.INVISIBLE
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        posMale = -1
+        posFemale = -1
     }
 }

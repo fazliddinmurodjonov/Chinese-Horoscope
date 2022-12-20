@@ -32,7 +32,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         SharedPreference.init(requireActivity())
-     updateLang()
+        updateLang()
         uploadRecycler()
     }
 
@@ -53,7 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 adapter.submitList(MainActivity.zodiacList)
                 binding.horoscopeRV.adapter = adapter
                 adapter.setOnItemClickListener {
-                    if (db.zodiacBaseDao().getAll().isNotEmpty()) {
+                    if (!db.zodiacBaseDao().getAll().isNotEmpty()) {
                         val bundleOf = bundleOf("id" to it)
                         findNavController().navigate(R.id.predictionsFragment, bundleOf)
                     }

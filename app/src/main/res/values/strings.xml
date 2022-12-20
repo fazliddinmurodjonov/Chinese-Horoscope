@@ -3,7 +3,7 @@
     <string name="app_name">ChineseHoroscope</string>
     <string name="chinese_horoscope">Muchallar bashorati</string>
     <string name="item_zodiac_name">Quyon</string>
-    <string name="about_zodiacs">Muchallar haqida ma’lumot</string>
+    <string name="about_zodiacs">Muchallar haqida</string>
     <string name="about_rabbit">Quyon muchali Sharq taqvimida xotirjamlik ramzidir. Mazkur muchal yilida tug‘ilganlar o‘zlariga xos xislatlarga ega bo‘lib, qobiliyatli, izzattalab, sodda, kamtarin, sipo, bosiq kamsuqum, ochiqko‘ngil, sahovatli va barchaga yoqimli bo‘ladilar. Ular nozik did egalaridir. Ko‘pchilik orasida bo‘lishni yoqtiradilar va ularni hamma yoqtirib, qabul qiladi. Ular ko‘pchilikning olqishidagi, ishonchidagi odamlardir.Quyon muchalida tug‘ilganlar o‘ta sezgir bo‘lib, boshqalarning mushkulini xech qanday manfaat talab qilmasdan yengillashtirishga urinadilar. Jiddiy kamchiliklari: g‘iybat qilishni yoqtirib, kim bo‘lsa ham soatlab gaplashib turaveradilar. Lekin g‘iybatni ochiq-oydin emas, kishi bilmas, ehtiyotkorlik va xushmuomalalik bilan amalga oshirishadi. Odatda, og‘ir-vazminliklari bois, ular tinchini buzish qiyin. Ammo arzimas bahonalar bilan yig‘lashlari, arazlashlari, gina-qudurat qilishlari ham mumkin. Shunday bo‘lsada, tez yupanadilar va ovunadilar. Hayot tarziga putur yetkazadigan, uni qiyinlashtiradigan har qanday yangilikka toqatlari yo‘q. Badastir va xavf-xatarsiz yashashga intiladilar. Ular ajoyib ishchanlik qobiliyatiga ega serg‘ayrat kishilar bo‘lib, Halol va o‘z so‘zlarining ustidan chiqadilar. Mazkur muchal yilida tug‘ilganlarning xuquqshunoslik iqtisod, ta’lim-tarbiya, siyosat kabi soxalardagi faoliyati ko‘plab muvaffaqiyatlarga olib keladi. Ayollar esa ishvali, kelishgan bo‘ladilar.</string>
     <string name="monkey">Maymun</string>
 
@@ -43,5 +43,7 @@
     <string name="connection">Iltimos, internetga  ulanishni tekshirib  ko‘ring va qaytadan urining.</string>
     <string name="select_male">Sizning\nbelgingiz</string>
     <string name="select_female">Juftingiz\nbelgisi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

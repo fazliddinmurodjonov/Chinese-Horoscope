@@ -1,60 +1,169 @@
 package com.programmsoft.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.programmsoft.chinesehoroscope.MainActivity
 import com.programmsoft.chinesehoroscope.R
+import com.programmsoft.chinesehoroscope.databinding.FragmentResultCompatibilityBinding
+import com.programmsoft.models.Compatibility
+import com.programmsoft.utils.App
+import com.programmsoft.utils.SharedPreference
+import java.io.IOException
+import java.io.InputStream
+import java.lang.reflect.Type
+import java.nio.charset.Charset
+import kotlin.random.Random
+import kotlin.random.nextInt
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ResultCompatibilityFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ResultCompatibilityFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class ResultCompatibilityFragment : Fragment(R.layout.fragment_result_compatibility) {
+    private val binding: FragmentResultCompatibilityBinding by viewBinding()
+    private var compatibilitiesList = ArrayList<Compatibility>()
+    var resultCompatibility = ""
+    var resultPercentage = 0
+    val handler = Handler(Looper.getMainLooper())
+    var i = 0
+    var posOne = 0
+    var posTwo = 0
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        compatibilitiesList = loadCompatibilityWithLang(SharedPreference.lang!!)
+        getResult()
+        loadData()
+    }
+    private fun loadData() {
+        resultPercentage = Random.nextInt(70..95)
+        handler.postDelayed(runnable, 20)
+        var firstConstellation = MainActivity.zodiacList[posOne]
+        var secondConstellation = MainActivity.zodiacList[posTwo]
+        val firstDrawable = "book_" + firstConstellation.img
+        val firstImgId = App.instance.resources.getIdentifier(firstDrawable!!.lowercase(),
+            "drawable",
+            App.instance.packageName)
+        val secondDrawable = "book_" + secondConstellation.img
+        val secondImgId = App.instance.resources.getIdentifier(secondDrawable!!.lowercase(),
+            "drawable",
+            App.instance.packageName)
+        with(binding)
+        {
+            constellationFirstImg.setImageResource(firstImgId)
+            constellationSecondImg.setImageResource(secondImgId)
+            constellationNameMale.text = firstConstellation.name
+            constellationNameFemale.text = secondConstellation.name
+            otherPairsBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            overallCompatibilityTv.text = resultCompatibility
+        }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    }
+
+    @SuppressLint("UseRequireInsteadOfGet")
+    private fun getResult() {
+        posOne = arguments!!.getInt("posOne")
+        posTwo = arguments!!.getInt("posTwo")
+        val compatibilities = compatibilitiesList[posOne]
+        when (posTwo + 1) {
+            1 -> {
+                resultCompatibility = compatibilities.rat!!
+            }
+            2 -> {
+                resultCompatibility = compatibilities.ox!!
+            }
+            3 -> {
+                resultCompatibility = compatibilities.tiger!!
+            }
+            4 -> {
+                resultCompatibility = compatibilities.rabbit!!
+            }
+            5 -> {
+                resultCompatibility = compatibilities.dragon!!
+            }
+            6 -> {
+                resultCompatibility = compatibilities.snake!!
+            }
+            7 -> {
+                resultCompatibility = compatibilities.horse!!
+            }
+            8 -> {
+                resultCompatibility = compatibilities.goat!!
+            }
+            9 -> {
+                resultCompatibility = compatibilities.monkey!!
+            }
+            10 -> {
+                resultCompatibility = compatibilities.rooster!!
+            }
+            11 -> {
+                resultCompatibility = compatibilities.dog!!
+            }
+            12 -> {
+                resultCompatibility = compatibilities.pig!!
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_result_compatibility, container, false)
+    private fun loadCompatibilityWithLang(lang: String): ArrayList<Compatibility> {
+        var compatibilityList = ArrayList<Compatibility>()
+        when (lang) {
+            "uz" -> {
+                val loadHoroscopeFromAsset = loadJSONFromAsset("compatibility_zodiac_uz")
+                compatibilityList = loadCompatibility(loadHoroscopeFromAsset!!)
+            }
+            "kr" -> {
+                val loadHoroscopeFromAsset = loadJSONFromAsset("compatibility_zodiac_kirill")
+                compatibilityList = loadCompatibility(loadHoroscopeFromAsset!!)
+            }
+        }
+        return compatibilityList
+    }
+    private fun loadCompatibility(json: String): ArrayList<Compatibility> {
+        val gson = Gson()
+        val type: Type = object : TypeToken<ArrayList<Compatibility>>() {}.type
+        return gson.fromJson(json, type)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ResultCompatibilityFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ResultCompatibilityFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun loadJSONFromAsset(jsonName: String): String? {
+        val json: String? = try {
+            val inputStream: InputStream = requireActivity().assets.open("$jsonName.json")
+            val sizeOfFile = inputStream.available()
+            val bufferDate = ByteArray(sizeOfFile)
+            inputStream.read(bufferDate)
+            inputStream.close()
+            String(bufferDate, Charset.forName("UTF-8"))
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return null
+        }
+        return json
+    }
+
+
+    private val runnable = object : Runnable {
+        @SuppressLint("SetTextI18n")
+        override fun run() {
+            if (i <= resultPercentage) {
+                binding.percentageTv.text = "$i%"
+                i++
+                handler.postDelayed(this, 20)
+            } else {
+                handler.removeCallbacks(this)
             }
+        }
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacks(runnable)
     }
 }
