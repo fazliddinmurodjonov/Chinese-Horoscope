@@ -15,13 +15,13 @@ import kotlin.random.nextInt
 object UpdateData {
     var percentageList: ArrayList<Percentages> = percentagesList()
 
-    fun updateHoroscope(paramFirst: Int) {
+    fun updateHoroscope() {
         SharedPreference.init(App.instance)
         val lang = LanguageManager(App.instance)
         lang.updateResource(SharedPreference.lang!!)
         val retrofitService = Common.retrofitService
         val db = CreateDB.db
-        retrofitService.getHoroscope(paramFirst)
+        retrofitService.getHoroscope()
             .enqueue(object : Callback<List<ZodiacAPI>> {
                 override fun onResponse(
                     call: Call<List<ZodiacAPI>>,
@@ -32,7 +32,7 @@ object UpdateData {
                         val body = response.body()
                         body?.forEach { c ->
                             var zodiacId =
-                                db.zodiacBaseDao().getById(c.id)
+                                db.zodiacBaseDao().getById(c.id.toInt())
                             zodiacId.todayUzb = c.today_uzb
                             zodiacId.tomorrowUzb = c.tomorrow_uzb
                             zodiacId.dateToday = getDate(0)
@@ -41,11 +41,11 @@ object UpdateData {
                             zodiacId.healthToday = zodiacId.healthTomorrow
                             zodiacId.loveToday = zodiacId.loveTomorrow
                             zodiacId.workTomorrow =
-                                percentageList[c.id - 1].tomorrowWork
+                                percentageList[c.id.toInt() - 1].tomorrowWork
                             zodiacId.healthTomorrow =
-                                percentageList[c.id - 1].tomorrowHealth
+                                percentageList[c.id.toInt()- 1].tomorrowHealth
                             zodiacId.loveTomorrow =
-                                percentageList[c.id - 1].tomorrowLove
+                                percentageList[c.id.toInt() - 1].tomorrowLove
                             db.zodiacBaseDao().update(zodiacId)
                         }
                     }

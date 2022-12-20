@@ -6,6 +6,7 @@ import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.View
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.programmsoft.chinesehoroscope.R
 import com.programmsoft.chinesehoroscope.databinding.FragmentPredictionsViewPagerBinding
 import com.programmsoft.room.entity.ZodiacBase
 import com.programmsoft.utils.CreateDB
@@ -14,7 +15,7 @@ import com.programmsoft.utils.SharedPreference
 private const val POSITION = "position"
 private const val ZODIAC_ID = "zodiac_id"
 
-class PredictionsViewPagerFragment : Fragment() {
+class PredictionsViewPagerFragment : Fragment(R.layout.fragment_predictions_view_pager) {
     private val binding: FragmentPredictionsViewPagerBinding by viewBinding()
     private var position: Int? = null
     private var zodiacId: Int? = null
@@ -48,12 +49,14 @@ class PredictionsViewPagerFragment : Fragment() {
                         workCount = zodiac.workToday!!
                         healthCount = zodiac.healthToday!!
                         loveCount = zodiac.loveToday!!
+                        binding.dateTv.text =zodiac.dateToday
                     }
                     1 -> {
                         binding.predictionTv.text = zodiac.tomorrowUzb
                         workCount = zodiac.workTomorrow!!
                         healthCount = zodiac.healthTomorrow!!
                         loveCount = zodiac.loveTomorrow!!
+                        binding.dateTv.text =zodiac.dateTomorrow
                     }
                 }
             }
@@ -64,12 +67,15 @@ class PredictionsViewPagerFragment : Fragment() {
                         workCount = zodiac.workToday!!
                         healthCount = zodiac.healthToday!!
                         loveCount = zodiac.loveToday!!
+                        binding.dateTv.text =zodiac.dateToday
+
                     }
                     1 -> {
                         binding.predictionTv.text = zodiac.tomorrowUzb
                         workCount = zodiac.workTomorrow!!
                         healthCount = zodiac.healthTomorrow!!
                         loveCount = zodiac.loveTomorrow!!
+                        binding.dateTv.text =zodiac.dateTomorrow
                     }
                 }
             }

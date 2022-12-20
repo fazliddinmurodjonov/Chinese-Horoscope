@@ -10,15 +10,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 object UploadData {
-    fun uploadHoroscope(paramFirst: Int, paramSecond: Int) {
+    fun uploadHoroscope() {
         val retrofitService = Common.retrofitService
         SharedPreference.init(App.instance)
         val db = CreateDB.db
-        retrofitService.getHoroscope(paramFirst)
+        retrofitService.getHoroscope()
             .enqueue(object : Callback<List<ZodiacAPI>> {
                 override fun onResponse(
                     call: Call<List<ZodiacAPI>>,
@@ -35,12 +33,12 @@ object UploadData {
                             zodiac.tomorrowUzb = z.tomorrow_uzb
                             zodiac.dateToday = getDate(0)
                             zodiac.dateTomorrow = getDate(1)
-                            zodiac.workToday = MainActivity.percentageList[z.id -1].todayWork
-                            zodiac.healthToday = MainActivity.percentageList[z.id -1].todayHealth
-                            zodiac.loveToday = MainActivity.percentageList[z.id -1].todayLove
-                            zodiac.workTomorrow = MainActivity.percentageList[z.id -1].tomorrowWork
-                            zodiac.healthTomorrow = MainActivity.percentageList[z.id -1].tomorrowHealth
-                            zodiac.loveTomorrow = MainActivity.percentageList[z.id -1].tomorrowLove
+                            zodiac.workToday = MainActivity.percentageList[z.id.toInt() -1].todayWork
+                            zodiac.healthToday = MainActivity.percentageList[z.id.toInt() -1].todayHealth
+                            zodiac.loveToday = MainActivity.percentageList[z.id.toInt() -1].todayLove
+                            zodiac.workTomorrow = MainActivity.percentageList[z.id.toInt() -1].tomorrowWork
+                            zodiac.healthTomorrow = MainActivity.percentageList[z.id.toInt() -1].tomorrowHealth
+                            zodiac.loveTomorrow = MainActivity.percentageList[z.id.toInt() -1].tomorrowLove
                             db.zodiacBaseDao().insert(zodiac)
                         }
 

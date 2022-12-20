@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -62,16 +63,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), LangFragment.OnI
         changeTextLang()
         handler = Handler(Looper.getMainLooper())
         zodiacList = loadHoroscopeWithLang(SharedPreference.lang!!)
-
-//        if (SharedPreference.updateDB == 0) {
-//            checkNetworkConnection()
-//        }
-//        if (SharedPreference.updateDBTime == "") {
-//            SharedPreference.updateDBTime = getTime()
-//            handler = Handler(Looper.getMainLooper())
-//            firstUpload = 1
-//            handler.postDelayed(runnable, 0)
-//        }
+        if (SharedPreference.updateDB == 0) {
+            checkNetworkConnection()
+        }
+        if (SharedPreference.updateDBTime == "") {
+            SharedPreference.updateDBTime = getTime()
+            handler = Handler(Looper.getMainLooper())
+            firstUpload = 1
+            handler.postDelayed(runnable, 0)
+        }
     }
 
     private fun checkNetworkConnection() {
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), LangFragment.OnI
             if (NetworkHelper(this@MainActivity).isNetworkConnected()) {
                 if (firstUpload == 1) {
                     if (db.zodiacBaseDao().getAll().isEmpty() && sendRequest) {
-                        UploadData.uploadHoroscope(1, 2)
+                        UploadData.uploadHoroscope()
                         sendRequest = false
                     }
                     if (db.zodiacBaseDao().getAll().isNotEmpty()) {
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), LangFragment.OnI
                         checkDatabase = false
                     }
                 } else {
-                    UpdateData.updateHoroscope(1)
+                    UpdateData.updateHoroscope()
                     handler.removeCallbacks(this)
 
                     checkDatabase = false

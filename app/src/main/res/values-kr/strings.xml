@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ChineseHoroscope</string>
+    <string name="app_name">Muchallar bashorati</string>
     <string name="chinese_horoscope">Мучаллар башорати</string>
     <string name="item_zodiac_name">Quyon</string>
     <string name="about_zodiacs">Мучаллар ҳақида</string>

@@ -22,7 +22,7 @@ class UpdateDBService(appContext: Context, workerParams: WorkerParameters) :
         SharedPreference.init(App.instance)
         val getCurrentTime = getTime()
         if (getCurrentTime != SharedPreference.updateDBTime) {
-            UpdateData.updateHoroscope(1)
+            UpdateData.updateHoroscope()
             if (SharedPreference.notificationTurnOn == 1) {
                 PushNotification.createNotificationChannel()
                 PushNotification.scheduleNotification()
